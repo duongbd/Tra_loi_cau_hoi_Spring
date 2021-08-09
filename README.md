@@ -156,3 +156,76 @@
 25. Formatter là gì ? Converter là gì ?
 - Spring Converter là một đối tượng được dùng để chuyển đổi kiểu dữ liệu này sang kiểu dữ liệu khác. Chẳng hạn, chúng ta có thể biểu diễn cùng một ngày theo những định dạng khác nhau, chẳng hạn như: “December 25, 2016,” 12/25/2016,” “2016-12-25”.
 - Formatter cũng hoạt động giống như converter, tức là chuyển đổi một kiểu dữ liệu sang kiểu dữ liệu khác. Tuy nhiên, kiểu dữ liệu nguồn của Formatter là String, trong khi đó converter có thể làm việc với bất cứ kiểu dữ liệu nguồn nào.
+
+26. ORM là gì?
+- ORM (Object-Relational Mapping) là kỹ thuật liên kết giữa các đối tượng trong lập trình với các đối tượng trong CSDL.
+
+27. JPA là gì? Spring Data JPA là gì?
+- JPA là một đặc tả của Java cho APIs truy cập vào các DB dùng SQL khác nhau.
+- Spring Data JPA là một sub-project của Spring Data, cung cấp abstraction layer sử dụng JPA với implement mặc định là Hibernate.
+
+28. Hibernate là gì? Hibernate làm gì với database?
+- Hibernate là một thư viện ORM (Object Relational Mapping) mã nguồn mở giúp lập trình viên viết ứng dụng Java có thể map các objects (pojo) với hệ quản trị cơ sở dữ liệu quan hệ, và hỗ trợ thực hiện các khái niệm lập trình hướng đối tượng với cớ dữ liệu quan hệ.
+- Hibernate giúp lưu trữ và truy vấn dữ liệu quan hệ mạnh mẽ và nhanh. Hibernate cho phép bạn truy vẫn dữ liệu thông qua Java Persistence API (JPA) hoặc bằng ngôn ngữ SQL mở rộng của Hibernate (HQL) hoặc bằng SQL thuần (Native SQL).
+
+29. Liệt kê một số annotation của Hibernate.
+- @Entity Annotation: Đánh dấu class là một entity.
+- @Table Annotation: Xác định các chi tiết của bảng như tên, ràng buộc, schema, catalogue.
+- @Id Annotation: Đánh dấu id của bảng.
+- @GeneratedValue Annotation: Giá trị của field được tự động generate với 2 tham số là strategy và generator.
+- @Column Annotation: Xác định chi tiết column được map đến, gồm các thuộc tính về tên, độ dài, nullable, unique.
+
+30. Entity là gì?
+- Một Entity đại diện cho một bảng trong cơ sở dữ liệu quan hệ và mỗi field trong thực thể tương ứng với một hàng trong bảng đó.
+
+31. Persistence Context và Entity Manager là gì?
+- Persistence Context là tập các thể hiện của entity được quản lý,tồn tại trong một kho dữ liệu.
+- Entity Manager là interface để quản lý, tương tác với Persistence Context: tạo hoặc xóa thể hiện của entity, tìm kiếm entity theo khóa chính, thực thi lệnh truy vấn lên entity.
+
+32. Câu lệnh truy vấn động, câu lệnh truy vấn tĩnh là gì?
+- Dynamic query là câu lệnh sẽ được biên dịch trong lúc runtime -> sử dụng trong các trường hợp cần query đến từ người dùng.
+- Static query là câu lệnh được biên dịch lúc compile -> sử dụng cho các truy vấn cố định, không thay đổi vì nó k thay đổi khi runtime.
+
+33. Trạng thái của Entity bao gồm những gì?
+- Transient: Một object vừa mới được tạo ra mà chưa được kết nối với Hibernate và cũng chưa được ánh xạ vào bất cứ bảng nào trong database thì sẽ được coi như là ở trạng thái New (Transient).
+- Persistent: Thực thể Persistent đã được ánh xạ vào trong database và được quản bị bởi Persistence Context đang hoạt động. Bất cứ thay đổi nào tác động lên entity sẽ được ghi nhận và  cuồi cùng được ghi ổn định vào trong cơ sở dữ liệu trong lệnh Session flush.
+- Detached: Một khi Persistence Context đang chạy đã đóng lại, mọi entity được liên kết trước đó sẽ bị tách ra. Các thay đổi tiếp theo sau đó sẽ không còn được theo dõi và động bộ hóa vào trong database nữa.
+- Deleted: Bị xóa.
+
+34. Có bao nhiêu loại mapping trong Hibernate?
+- Có 4 loại mapping trong Hibernate:
+  • Many to One.
+  • One to Many.
+  • One to One.
+  • Many to Many.
+
+
+35. SessionFactory là gì?
+- SessionFactory là một interface ở trong org.hibernate package nó extends Referenceable and Serializable interface và cung cấp factory methods để tạo ra session object.
+
+
+36. Liệt kê ba trạng thái của đối tượng trong Hibernate.
+- Transient: Các đối tượng transient (không ổn định) là những “đối tượng lẻ” - vừa được tạo và chưa được phân biệt bởi một Phiên cụ thể.
+- Persistent: Các đối tượng persistent (liên tục) là những đối tượng đang mở - chúng xảy ra bất cứ khi nào bạn lưu hoặc truy xuất một số trường hợp nhất định từ cơ sở dữ liệu Hibernate.
+- Detached: Các đối tượng trở nên detached (tách rời) sau khi phiên được đóng bởi nhà phát triển.
+
+37. Validation dữ liệu là gì?
+-  Data validation là việc kiểm tra dữ liệu trước khi xử lý nhằm đảm bảo dữ liệu đáp ứng các yêu cầu đặt ra.
+
+38. Trình bày cách triển khai validate dữ liệu trong Spring.
+- Sử dụng các annotation để validate data trong class entity, khi kiểm tra sử dụng annotation @valid hoặc @validated kết hợp bindingResult để kiểm tra.
+
+39. Binding Result là gì?
+- BindingResult là đối tượng của Spring mà giữ kết quả xác thực và ràng buộc và chứa các lỗi có thể xảy ra. BindingResult phải đến ngay sau khi đối tượng mô hình được xác thực nếu không Spring sẽ không xác thực đối tượng và ném ngoại lệ.
+
+40. AOP là gì? AOP gồm những yếu tố nào?
+
+41. Các loại Advice.
+
+42. JoinPoint là gì?
+
+43. Nếu cách ban triển khai AOP mà bạn dùng trong dự án.
+- Khai báo các dependency Spring-AOP, aspectj.
+- Triển khai class AOP vs annotation aspect, sử dụng các annotation khác để weave các method trong aspect theo ý muốn.
+
+44. Xử lý ngoại lệ trong Spring MVC như thế nào?
